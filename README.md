@@ -6,13 +6,15 @@ Para ello se usa un archivo `config.php` con tres variables principales que en u
 
 ## Características
 
-- Configuración del ecosistema de personalizaciones desde un fichero config con tres variables principales: `admin_menus`, `post_types` y `custom_fields`.
-- Directorio `public` disponible para añadir assets varios usados en el frontend como estilos CSS, scripts JS, librerías JS, views, partials u otro tipo de contenidos personalizados a discreción del desarrollador.
-- Directorio `functions` para añadir ficheros php que contengan clases que agreguen la lógica necesaria para llevar las personalizaciones un paso más allá.
+- Configuración del ecosistema de personalizaciones desde un fichero `config.php` con tres variables principales: `admin_menus`, `post_types` y `custom_fields`.
+- Creación de **Custom Post Types** y **taxonomías** asociadas en pocas líneas dentro del fichero de configuración, todos los hooks y código necesarios para crear la estructura de Custom Post Types los hará este helper por ti.
+- Permite crear de forma sencilla **admin menus personalizados** con los subelementos que necesites, como los custom post types creados también por ti desde el fichero de configuración, páginas de ajustes usando la API de **Advanced Custom Fields Pro** o páginas personalizadas.
+- Directorio `public` disponible para añadir assets varios usados en el frontend como **estilos CSS, scripts JS, librerías JS, views, partials** u otro tipo de contenidos personalizados a discreción del desarrollador.
+- Directorio `functions` para añadir ficheros php que contengan funciones o clases que agreguen la lógica necesaria para llevar las personalizaciones un paso más allá.
 
 ## Requisitos Previos y Dependencias
 
-No hay requisitos salvo tener instalado y activo el plugin Advanced Custom Fields Pro para usar su API de campos personalizados si es que es necesario para el proyecto.
+No hay requisitos salvo tener instalado y activo el plugin **Advanced Custom Fields Pro** para usar su API de campos personalizados si es que es necesario para el proyecto.
 
 ## Instalación
 
@@ -26,7 +28,7 @@ require_once get_stylesheet_directory() . '/CzWordpressThemeHelper/loader.php';
 
 ## Uso
 
-El helper trabaja con un archivo config.php en el que se configurarán todas las personalizaciones que tengan que ver con:
+El helper trabaja con un archivo `config.php` en el que se configurarán todas las personalizaciones que tengan que ver con:
 1. **Admin menus** que pueden contener subelementos tales como:
     1. Tipos de post personalizados
     2. Taxonomías de los tipos de posts personalizados (recomendable añadirlas justo después de los tipos de posts)
@@ -35,7 +37,9 @@ El helper trabaja con un archivo config.php en el que se configurarán todas las
 2. **Tipos de post personalizados y taxonomías**
 3. **Campos personalizados**
 
-Para defnir las clases que contengan las personalizaciones más avanzadas es necesario hacerlo dentro de la carpeta `functions` del repositorio. Se recomienda utilizar un formato similar a este para los ficheros incluidos: `cz-{mi-clase}-functions.php`.
+Se facilita un archivo `config-example.php` con algunos ejemplos del contenido y cómo definirlo. En futuras actualizaciones se mejorará no solo el propio helper añadiendo nuevas funcionalidades sino que se mejorará y ampliará la documentación a este respecto.
+
+Para defnir las clases que contengan las personalizaciones más avanzadas es recomendable hacerlo dentro de la carpeta `functions` del repositorio. Se recomienda utilizar un formato similar a este para los ficheros incluidos: `cz-{mi-clase}-functions.php`.
 
 Dentro del fichero se deberán declarar funciones o clases PHP para que posteriormente puedan ser instanciadas cuando las necesites. Toda la lógica y hooks que quieras inicializar junto con el helper se recomienda hacerlo con un método público llamado `run()` que será llamado por el core del helper al inicializarse, por ejemplo de la siguiente manera:
 ```php
