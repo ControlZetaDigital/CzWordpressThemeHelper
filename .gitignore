@@ -1,0 +1,9 @@
+public/img/*
+!public/img/.gitkeep
+public/lib/*
+!public/lib/.gitkeep
+public/views/*
+!public/views/.gitkeep
+functions/*
+!functions/.gitkeep
+config.php
