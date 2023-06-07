@@ -102,11 +102,13 @@ class CZ_Main {
         add_action('admin_init', [$this->enqueue, 'register_admin']);
 
         // Admin Menus
-        add_action('admin_menu', [$this->admin_menus, 'register_menus']);
-        if( class_exists('ACF') ) {
-            add_action('acf/init', [$this->admin_menus, 'register_options']);
-        }            
-        add_action('parent_file', [$this->admin_menus, 'taxonomy_menu']);
+        if ($this->admin_menus) {
+            add_action('admin_menu', [$this->admin_menus, 'register_menus']);
+            if( class_exists('ACF') ) {
+                add_action('acf/init', [$this->admin_menus, 'register_options']);
+            }            
+            add_action('parent_file', [$this->admin_menus, 'taxonomy_menu']);
+        }
 
         // Post Types  
         if ($this->post_types)      
