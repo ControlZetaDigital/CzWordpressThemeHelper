@@ -1,4 +1,4 @@
-# CZ Wordpress Theme API
+# CZ Wordpress Theme Helper
 
 Este helper tiene la misión de complementar los temas de Wordpress para crear de forma sencilla contenido personalizado como custom post types, campos personalizados a través de la API de Advanced Custom Fields Pro y otros tipos de contenido como menus de administradores y hooks que faciliten la personalización sin necesidad de usar multiples plugins y facilitando el trabajo de codificación.
 
@@ -17,7 +17,7 @@ No hay requisitos salvo tener instalado y activo el plugin Advanced Custom Field
 ## Instalación
 
 1. Navega al directorio de tu tema instalado en wordpress, por ejemplo: `cd /wp-config/themes/tu-tema`
-2. Clona el repositorio: `git clone https://github.com/ControlZetaDigital/CzWordpressThemeApi.git`
+2. Clona el repositorio: `git clone https://github.com/ControlZetaDigital/CzWordpressThemeHelper.git`
 3. Alternativamente puedes descargar los ficheros y guardarlos en la carpeta raíz de tu tema.
 4. Editar el archivo `functions.php` y añadir la siguiente línea (**IMPORTANTE:** modificar el nombre carpeta si se ha descargado el helper en otra ruta distinta):
 ```php
@@ -37,7 +37,7 @@ El helper trabaja con un archivo config.php en el que se configurarán todas las
 
 Para defnir las clases que contengan las personalizaciones más avanzadas es necesario hacerlo dentro de la carpeta `functions` del repositorio. Se recomienda utilizar un formato similar a este para los ficheros incluidos: `cz-{mi-clase}-functions.php`.
 
-Dentro del fichero se deberán declarar funciones o clases PHP para que posteriormente puedan ser instanciadas cuando las necesites. Toda la lógica y hooks que quieras inicializar junto con el helper se recomienda hacerlo con un método público llamado `run()` que será llamado por el core del snippet al inicializarse, por ejemplo de la siguiente manera:
+Dentro del fichero se deberán declarar funciones o clases PHP para que posteriormente puedan ser instanciadas cuando las necesites. Toda la lógica y hooks que quieras inicializar junto con el helper se recomienda hacerlo con un método público llamado `run()` que será llamado por el core del helper al inicializarse, por ejemplo de la siguiente manera:
 ```php
 class CZ_Mi_Clase_Functions {
     public function __construct() {}
