@@ -108,8 +108,9 @@ class CZ_Main {
         }            
         add_action('parent_file', [$this->admin_menus, 'taxonomy_menu']);
 
-        // Post Types        
-        $this->post_types->add_hooks();        
+        // Post Types  
+        if ($this->post_types)      
+            $this->post_types->add_hooks();
 
         // Admin Columns
         if ($this->admin_columns)
