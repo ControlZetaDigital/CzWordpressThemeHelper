@@ -103,6 +103,14 @@ class CZ_ACF_Api {
             );
         }
 
+        //Merge layouts data if exists
+        if (isset($args['layouts'])) {
+            $field = array_merge(
+                $field,
+                $this->get_custom_layouts($args['layouts'])
+            );
+        }
+
         //Merge default data if exists
         if (isset($args['defaults'])) {
             $field = array_merge(
@@ -127,6 +135,45 @@ class CZ_ACF_Api {
         }
 
         return $return;
+    }
+
+    private function get_custom_layouts($layouts) {
+        $return = [
+            'layouts' => []
+        ];
+        foreach($layouts as $layout) {
+            $args = [];
+            foreach($layout as $key => $value)
+                $args[$key] = $value;
+            
+            $return['layouts'][] = $this->get_custom_layout($args);
+        }
+
+        return $return;
+    }
+
+    private function get_custom_layout( $args ) {
+        $label = $args['name'][0];
+        $name = $args['name'][1];
+        $key = 'cz_acf_layout_' . $name;
+        $layout = [
+            'key' => $key,
+            'label' => $label,
+            'name' => $key,
+            'display' => (isset($args['display'])) ? $args['display'] : 'block',
+            'min' => (isset($args['min'])) ? $args['min'] : '',
+            'max' => (isset($args['max'])) ? $args['max'] : ''
+        ];
+        
+        //Merge sub_fields data if exists
+        if (isset($args['sub_fields'])) {
+            $layout = array_merge(
+                $layout,
+                $this->get_custom_sub_fields($args['sub_fields'])
+            );
+        }
+
+        return $layout;
     }
 
     private function get_custom_fields_defaults($type, $values) {
@@ -197,6 +244,9 @@ class CZ_ACF_Api {
                 break;
             case 'repeater':
                 $defaults = ['collapsed', 'min', 'max', 'layout', 'button_label'];
+                break;
+            case 'flexible_content':
+                $defaults = ['min', 'max', 'button_label'];
                 break;
             case 'wysiwyg':
                 $defaults = ['default_value', 'tabs', 'toolbar', 'media_upload', 'delay'];
