@@ -28,4 +28,11 @@ class CZ_Helpers {
             );
         }
     }
+
+    public function log($handle, $text, $dir = false) {
+        $dir_path = ($dir) ? "{$dir}/" : "";
+        $filename = CZ_PATH . "/logs/{$dir_path}{$handle}.log";
+        $line = "[".date('Y-m-d h:i:s')."] >> " . $text . PHP_EOL;
+        file_put_contents($filename, $line, FILE_APPEND);
+     }
 }

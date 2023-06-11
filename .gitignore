@@ -6,4 +6,6 @@ public/views/*
 !public/views/.gitkeep
 functions/*
 !functions/.gitkeep
+logs/*
+!logs/.gitkeep
 config.php
